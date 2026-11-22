@@ -1,5 +1,7 @@
 # Campus Commons
 
+[Open the live KIIT campus preview](https://kingsmithamit.github.io/METAVERSE/)
+
 Campus Commons is a browser-based 2D project space for student teams. Create a workspace, invite a teammate, and meet on an original campus map. The lobby and project tables are open to members. The private meeting zone has opt-in audio.
 
 ## Explore KIIT University
