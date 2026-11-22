@@ -139,8 +139,12 @@ export function CampusScene({ map, players, you, view, selected }: SceneProps) {
     let previous: Player[] | undefined
     let focus: Zone | undefined
     const previews = [{ username: 'maya', x: 6, y: 12 }, { username: 'eli', x: 13, y: 7 }, { username: 'jules', x: 23, y: 7 }]
+    // Phaser finishes destroying a game on its next frame. Give each view its own mount.
+    const mount = document.createElement('div')
+    mount.className = 'game-mount'
+    host.current!.appendChild(mount)
     const game = new Phaser.Game({
-      type: Phaser.CANVAS, pixelArt: true, parent: host.current!, transparent: iso,
+      type: Phaser.CANVAS, pixelArt: true, parent: mount, transparent: iso,
       backgroundColor: iso ? 'rgba(0,0,0,0)' : '#e8dec4', width, height,
       scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
       audio: { noAudio: true },
@@ -206,7 +210,10 @@ export function CampusScene({ map, players, you, view, selected }: SceneProps) {
         },
       },
     })
-    return () => game.destroy(true)
+    return () => {
+      mount.remove()
+      game.destroy(true)
+    }
   }, [map, view])
   return <div className="game" ref={host} role="img" aria-label={`${view === 'plan' ? 'Floor plan' : 'Isometric campus'} showing the lobby, project studio, and private meeting room`} />
 }
