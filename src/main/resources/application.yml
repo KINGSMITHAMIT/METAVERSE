@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://127.0.0.1:5432/campus}
+    username: ${DATABASE_USER:campus}
+    password: ${DATABASE_PASSWORD:campus}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+server:
+  address: ${SERVER_ADDRESS:127.0.0.1}
+  servlet:
+    session:
+      timeout: 2h
+      cookie:
+        same-site: lax
+        secure: ${SECURE_COOKIE:false}
+campus:
+  origin: ${CAMPUS_ORIGIN:http://localhost:5173}
+  position-mode: ${POSITION_MODE:broadcast}
+  livekit:
+    api-url: ${LIVEKIT_API_URL:}
+    browser-url: ${LIVEKIT_BROWSER_URL:ws://localhost:7880}
+    key: ${LIVEKIT_API_KEY:}
+    secret: ${LIVEKIT_API_SECRET:}
